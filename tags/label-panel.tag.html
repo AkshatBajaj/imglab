@@ -81,6 +81,18 @@
                 <option each={category in suggestedCategories} selected={category === targetShape.category}>{category}</option>
             </select>
         </div>
+        <div ref="clarity-data" class="mb-2 mt-2">
+            Clarity
+            <select id="clarity-select-box" class="form-text">
+                <option each={clarity in suggestedClarity} selected={clarity === targetShape.clarity}>{clarity}</option>
+            </select>
+        </div>
+        <div ref="confidence-data" class="mb-2 mt-2">
+            Confidence
+            <select id="confidence-select-box" class="form-text">
+                <option each={confidence in suggestedConfidence} selected={confidence === targetShape.confidence}>{confidence}</option>
+            </select>
+        </div>
         <div ref="label-data" class="mb-2 mt-2">
             Label Name
             <input type="text" class="form-text w-100" value="{ targetShape.label }" onchange={updateLabel} placeholder="Label the shape, Eg: face, clock ..">
@@ -170,6 +182,18 @@
                     tag.targetShape.category = val;
                 }
             });
+
+            $("#clarity-select-box")
+                .editableSelect()
+                .on('select.editable-select', function (e, li) {
+                    tag.targetShape.clarity = li.text().toLowerCase();
+                });
+
+                $("#confidence-select-box")
+                .editableSelect()
+                .on('select.editable-select', function (e, li) {
+                    tag.targetShape.confidence = li.text().toLowerCase();
+                });
 
             var tagInputBox = new Taggle('tags-input-box', {
                 tags: tag.targetShape.tags,

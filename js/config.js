@@ -164,7 +164,10 @@ var pluginsStore = {
     }
 }
 
-var suggestedCategories = ["dog", "cat", "car", "vehicle", "truck", "animal", "building", "person"];
+var suggestedCategories = ["bib", "text"];
+var suggestedClarity = ["readable", "occlusion", "blurry", "occlusion + blurry"];
+var suggestedConfidence = ["sure", "unsure"]
+
 var suggestedTags = [];
 var suggestedAttributes = {
     "gender" : ["male", "female", "other"],
