@@ -102,7 +102,7 @@ function saveAsDlibPts(){
  * It captures only boundary box detail and categories.
  */
 function saveAsJson(){
-    askFileName(Object.keys(labellingData).length + "_coco_imglab.json", function(fileName){
+    askFileName(Object.keys(labellingData).length + "_imglab.json", function(fileName){
         analytics_reportExportType("coco");
         download(JSON.stringify(labellingData), fileName, "application/json", "utf-8");
     });
