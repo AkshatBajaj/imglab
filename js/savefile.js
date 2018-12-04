@@ -12,7 +12,7 @@ function selectFileTypeToSave(){
                     <button class="btn btn-primary savebtn" onclick="javascript:saveAsDlibPts()" id="saveAsNimn">Dlib pts</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary savebtn" onclick="javascript:saveAsCOCO()" id="saveAsCOCO">COCO JSON</button>
+                    <button class="btn btn-primary savebtn" onclick="javascript:saveAsJson()" id="saveAsJson">COCO JSON</button>
                 </div>
                 <div>
                     <button class="btn btn-primary savebtn" onclick="javascript:saveAsPascalVOC()" id="saveAsPascalVOC">Pascal VOC XML</button>
@@ -101,7 +101,7 @@ function saveAsDlibPts(){
  * Save labelled data as COCO supported JSON file. 
  * It captures only boundary box detail and categories.
  */
-function saveAsCOCO(){
+function saveAsJson(){
     askFileName(Object.keys(labellingData).length + "_coco_imglab.json", function(fileName){
         analytics_reportExportType("coco");
         download(JSON.stringify(labellingData), fileName, "application/json", "utf-8");
