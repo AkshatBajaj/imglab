@@ -98,8 +98,8 @@ function saveAsDlibPts(){
 }
 
 /**
- * Save labelled data as COCO supported JSON file. 
- * It captures only boundary box detail and categories.
+ * Save labelled data as JSON file.
+ * It captures category, clarity, confidence and bounding points.
  */
 function saveAsJson(){
     askFileName(Object.keys(labellingData).length + "_imglab.json", function(fileName){
