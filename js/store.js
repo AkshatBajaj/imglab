@@ -80,7 +80,6 @@ function scaleShape(id, type, bbox, points, scale) {
             "y": 0,
             "w": 0,
             "h": 0        },
-        "attributes": [],
         "tags": [],
         "featurePoints": [],
         "zoomScale" : 1,
@@ -170,7 +169,6 @@ function addImgToStore(imgname, size) {
         labellingData[imgname] = {
             //"path" : "",
             "imagename": imgname,
-            "attributes": [],
             "tags": [],
             "size" : {
                 "width": size.width,
