@@ -169,7 +169,3 @@ var suggestedClarity = ["readable", "occlusion", "blurry", "occlusion + blurry"]
 var suggestedConfidence = ["sure", "unsure"]
 
 var suggestedTags = [];
-var suggestedAttributes = {
-    "gender" : ["male", "female", "other"],
-    "color" : ["red", "green", "blue", "orange", "yellow", "white", "black"],
-};
