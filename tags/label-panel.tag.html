@@ -108,10 +108,6 @@
             Label Name
             <input type="text" class="form-text w-100" value="{ targetShape.label }" onchange={updateLabel} placeholder="Label the shape, Eg: face, clock ..">
         </div>
-        <div ref="label-data" class="mb-2 mt-2">
-            Tags <small>(separated by comma)</small>
-            <div id="tags-input-box" class="input tagarea clearfix"></div>
-        </div>
         <p class="mb-2">Feature Points  <small>{ this.targetShape.featurePoints.length }</small></p>
         <div id="feature-points-list" >
             <ul id="fpoints-list">
@@ -130,26 +126,9 @@
     <script>
         var tag = this;
         tag.targetShape = getShape(this.opts.id);
-        tag.tags = tag.targetShape.tags.join(", ");
-
-        tag.updateTags = function(e){
-            tag.targetShape.tags = e.target.value.split(",").map(function(item) {
-                return item.trim();
-            });
-        }
 
         tag.updateLabel = function(e){
             tag.targetShape.label = e.target.value;
-        }
-
-        tag.deleteTag = function(e){
-          $(e.target).parents('li')
-            .addClass('animated slideOutRight')
-            .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
-                detachPointByIndex(opts.id, e.item.fid);
-                tag.update();
-                eventBus.trigger('removeWorkAreaFeaturePoint');
-            });
         }
 
         tag.updateFPointLabel = function(e){
@@ -202,41 +181,6 @@
                 .on('select.editable-select', function (e, li) {
                     tag.targetShape.confidence = li.text().toLowerCase();
                 });
-
-            var tagInputBox = new Taggle('tags-input-box', {
-                tags: tag.targetShape.tags,
-                duplicateTagClass: 'bounce',
-                onTagAdd : function(event, tagText){
-                    tag.targetShape.tags.push(tagText);
-                    if(suggestedTags.indexOf(tagText) === -1){
-                        suggestedTags.push(tagText);
-                    }
-                },
-                onTagRemove : function(event, tagText){
-                    tag.targetShape.tags.splice(tag.targetShape.tags.indexOf(tagText), 1);
-                },
-            });
-
-            var tagInputBoxContainer = tagInputBox.getContainer();
-            var tagInputBoxInput = tagInputBox.getInput();
-
-            $(tagInputBoxInput).autocomplete({
-                source : suggestedTags,
-                // appendTo: tagInputBoxContainer,
-                appendTo: $("#tags-input-box"),
-                position: { at: "left bottom", of: $("#tags-input-box") },
-                messages: {
-                    noResults: '',
-                    results: function() {}
-                },
-                select: function(event, data) {
-                    event.preventDefault();
-                    // Add the tag if user clicks
-                    if (event.which === 1) {
-                        tagInputBox.add(data.item.value);
-                    }
-                }
-            })
 
             // Make sure panel label is always empty on init of work area
             eventBus.on('unmountLabelPanel', () => {

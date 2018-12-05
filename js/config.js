@@ -167,5 +167,3 @@ var pluginsStore = {
 var suggestedCategories = ["bib", "text"];
 var suggestedClarity = ["readable", "occlusion", "blurry", "occlusion + blurry"];
 var suggestedConfidence = ["sure", "unsure"]
-
-var suggestedTags = [];
