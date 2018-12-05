@@ -1,6 +1,6 @@
 # [imglab](http://imglab.ml/)
 
-A web based tool to label images for objects that can be used to train dlib or other object detectors.
+A web based tool to label bibs.
 
 [![first-timers-only](http://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](http://www.firsttimersonly.com/)
 [![Bountysource](https://img.shields.io/bountysource/team/imglab/activity.svg)](https://salt.bountysource.com/teams/imglab)
@@ -45,17 +45,15 @@ ImgLab is platform independent, runs directly from the browser, and has no prere
 
 **Other features**:
 
-* Special attention for dlib users. You can easily adjust the order of parts / landmarks / featurepoints.
 * Open-source and free forever.
 * You can draw feature points and shapes (circles, rectangles, polygons). Other shapes like ellipses, lines, curves will be added in the future if there is demand. 
 * Small project file so it can be shared over the mail. In [निम्न (Nimn)](http://nimn.in) data format
 * Multiple formats are supported
-  * dlib XML
   * dlib pts
   * Pascal VOC
   * COCO
   * Tenserflow (in plan)
-  
+
 **Other quality-of-life features**:
 
 * Drag or resize any annotation shape.

@@ -6,9 +6,6 @@ function selectFileTypeToSave(){
                     <button class="btn btn-primary savebtn"  onclick="javascript:saveAsNimn()" id="saveAsNimn">Project file</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary savebtn" onclick="javascript:saveAsDlibXML()" id="saveAsNimn">Dlib XML</button>
-                </div>
-                <div>
                     <button class="btn btn-primary savebtn" onclick="javascript:saveAsDlibPts()" id="saveAsNimn">Dlib pts</button>
                 </div>
                 <div>
@@ -59,17 +56,6 @@ function report_UniqueCategories(){
     }catch(e){
 
     }
-}
-
-/**
- * Save labelled data as DLIB supported XML file. It captures only boundary box detail.
- */
-function saveAsDlibXML(){
-    var dlibXMLData = toDlibXML(labellingData);
-    askFileName(Object.keys(labellingData).length + "_imglab.xml", function(fileName){
-        analytics_reportExportType("dlib_xml");
-        download(dlibXMLData, fileName, "text/xml", "iso-8859-1");
-    });
 }
 
 /**
