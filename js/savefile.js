@@ -12,7 +12,7 @@ function selectFileTypeToSave(){
                     <button class="btn btn-primary savebtn" onclick="javascript:saveAsDlibPts()" id="saveAsNimn">Dlib pts</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary savebtn" onclick="javascript:saveAsJson()" id="saveAsJson">COCO JSON</button>
+                    <button class="btn btn-primary savebtn" onclick="javascript:saveAsJson()" id="saveAsJson">JSON</button>
                 </div>
                 <div>
                     <button class="btn btn-primary savebtn" onclick="javascript:saveAsPascalVOC()" id="saveAsPascalVOC">Pascal VOC XML</button>
