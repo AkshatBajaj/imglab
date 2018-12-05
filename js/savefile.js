@@ -6,9 +6,6 @@ function selectFileTypeToSave(){
                     <button class="btn btn-primary savebtn"  onclick="javascript:saveAsNimn()" id="saveAsNimn">Project file</button>
                 </div>
                 <div>
-                    <button class="btn btn-primary savebtn" onclick="javascript:saveAsDlibPts()" id="saveAsNimn">Dlib pts</button>
-                </div>
-                <div>
                     <button class="btn btn-primary savebtn" onclick="javascript:saveAsJson()" id="saveAsJson">JSON</button>
                 </div>
                 <div>
@@ -56,31 +53,6 @@ function report_UniqueCategories(){
     }catch(e){
 
     }
-}
-
-/**
- * Save feature point detail of selected label as DLIB supported point file (pts).
- */
-function saveAsDlibPts(){
-    var ptsData,shape;
-    if(!imgSelected){
-        showSnackBar("This option is applicable on the image loaded in workarea.");
-        return;
-    }else if(selectedElements.length === 1){
-        //TODO: bug element gets unselected when select any tool
-        shape  = getShape(selectedElements[0].id);
-    }else if(labellingData[imgSelected.name].shapes.length === 1){
-        shape  = labellingData[imgSelected.name].shapes[ 0 ];
-    }else{
-        showSnackBar("Please create or select one shape.");
-        return;
-    }
-
-    ptsData = toDlibPts( shape );
-    askFileName(imgSelected.name + "_imglab.pts", function(fileName){
-        analytics_reportExportType("dlib_pts", shape.featurePoints.length );
-        download(ptsData, fileName, "text/plain");
-    });
 }
 
 /**
