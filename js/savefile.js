@@ -103,7 +103,7 @@ function saveAsDlibPts(){
  */
 function saveAsJson(){
     askFileName(Object.keys(labellingData).length + "_imglab.json", function(fileName){
-        analytics_reportExportType("coco");
+        analytics_reportExportType("json");
         download(JSON.stringify(labellingData), fileName, "application/json", "utf-8");
     });
 }
