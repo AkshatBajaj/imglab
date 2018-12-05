@@ -1,21 +1,11 @@
 <label-panel>
     <style>
-        .li-fpoints{
-            margin: 5px 0px;
-            border-radius: 6px;
-            width: 100%;
-            list-style: none;
-        }
         .drag-handler{
             width : 20%;
             background-color: lightgray;
             cursor: move;
         }
-        #fpoints-list { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
-        #feature-points-list {
-            margin-top: 10px;
-            overflow-x: hidden;
-        }
+
         .sortable-placeholder {
             margin: 5px 0px;
             padding:10px;
@@ -108,20 +98,6 @@
             Label Name
             <input type="text" class="form-text w-100" value="{ targetShape.label }" onchange={updateLabel} placeholder="Label the shape, Eg: face, clock ..">
         </div>
-        <p class="mb-2">Feature Points  <small>{ this.targetShape.featurePoints.length }</small></p>
-        <div id="feature-points-list" >
-            <ul id="fpoints-list">
-                <li class="li-fpoints grey-border" each={fPoint,fid in targetShape.featurePoints}>
-                    <div class="input-group small">
-                        <span class={selectedPoint: fPoint.id === this.opts.pointId, input-group-addon: true, drag-handler: fPoint.id !== this.opts.pointId}></span>
-                        <input type="text" class="form-control" value="{ fPoint.label }" onchange={updateFPointLabel} placeholder="Label the feature point">
-                        <div class="input-group-btn" onclick={deleteTag}>
-                            <i class="icon icon-trash-empty"></i>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
     </div>
     <script>
         var tag = this;
@@ -131,26 +107,7 @@
             tag.targetShape.label = e.target.value;
         }
 
-        tag.updateFPointLabel = function(e){
-            tag.targetShape.featurePoints[e.item.fid].label = e.target.value;
-        }
-
         tag.on('mount',function(){
-            $( "#fpoints-list" ).sortable({
-                axis: "y",
-                placeholder: 'sortable-placeholder',
-                opacity: 0.6,
-                helper: 'clone',
-                sort: function(event,ui){
-                    $(ui.placeholder).html('Drop me at position ' + Number($('#fpoints-list > li:visible').index(ui.placeholder)+1));
-                },
-                update : function(event,ui){
-                    var newIndex = ui.item.index();
-                    var oldIndex = ui.item[0]._tag.fid;
-                    array_move(tag.targetShape.featurePoints,oldIndex,newIndex);
-                    tag.update();
-                }
-            });
 
             $("#category-select-box")
                 .editableSelect()
@@ -205,21 +162,5 @@
             eventBus.off('removeLabelPanelTag');
             eventBus.off('unmountLabelPanel');
         })
-
-        function array_move(arr, old_index, new_index) {
-            if (old_index > new_index){
-                var temp = arr[old_index];
-                for(;old_index > new_index; old_index--){
-                    arr[old_index] = arr[old_index - 1];
-                }
-                arr[new_index] = temp;
-            } else{
-                var temp = arr[old_index];
-                for(;old_index < new_index; old_index++){
-                    arr[old_index] = arr[old_index + 1];
-                }
-                arr[new_index] = temp;
-            }
-        };
     </script>
 </label-panel>

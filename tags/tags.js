@@ -94,18 +94,6 @@ riot.tag2('facepp', '<input onchange="{saveKey}" class="form-control" type="text
                                 .attributes[ attributes[ a_i ] ] = attribute.value;
                     }
                 }
-
-                var fPoints = labellingData[ imgName ].shapes[ faceLable ].featurePoints;
-
-                var fPointLabels = Object.keys(face.landmark);
-                for(var fPoint_i =0; fPoint_i < fPointLabels.length; fPoint_i++){
-                    var label = fPointLabels [fPoint_i];
-                    fPoints [ label ] = {
-                        x : face.landmark [ label ].x,
-                        y : face.landmark [ label ].y,
-                        label: label
-                    }
-                }
             }
         }
 });
@@ -407,27 +395,6 @@ riot.tag2('workarea', '<div id="canvas-container"> <img id="img" riot-src="{opts
             );
         }
 
-        function attachEventsToFeaturePoint(f_point, parent){
-            f_point.typ = 'point';
-            f_point.attr({
-                for: parent.node.id
-            })
-            attachPointToShape(parent.node.id, f_point.node.id, f_point.rbox(myCanvas));
-
-            onMouse( f_point,function(e){
-                updateFeaturePointPosition(f_point);
-            });
-
-            f_point.on('click', function(e) {
-                if(!e.ctrlKey){
-                    deselectAll();
-                }
-                f_point.selectize({ rotationPoint: false, points: []});
-                selectedElements.push(f_point);
-                e.stopPropagation();
-            });
-        }
-
         function onMouse(shape, dragCB){
             var mousestate = 0;
             shape.on( 'mousedown', function(e) {
@@ -464,16 +431,6 @@ riot.tag2('workarea', '<div id="canvas-container"> <img id="img" riot-src="{opts
     function attachShapeData(shape){
         var points = getPoints(shape);
         attachShapeToImg(shape.node.id ,shape.type, shape.rbox(myCanvas), points);
-    }
-
-    function updateFeaturePoints(shape){
-        $("[for="+ shape.node.id+"]").each( (i,pointEl) => {
-            updateFeaturePointPosition(SVG.get(pointEl.id));
-        });
-    }
-
-    function updateFeaturePointPosition(pointEl){
-        updateFeaturePointInStore(pointEl.attr("for") , pointEl.node.id, pointEl.rbox(myCanvas));
     }
 
     function getPoints(shape){
@@ -546,17 +503,6 @@ riot.tag2('workarea', '<div id="canvas-container"> <img id="img" riot-src="{opts
             }
 
             attachEvents(currentShape);
-            drawAllFeaturePoints(shape.featurePoints, currentShape);
-
         }
     }
-
-    function drawAllFeaturePoints(fPoints, parent){
-        for(var fPointId in fPoints){
-            var fPoint = getPointToDraw(fPoints[fPointId], parent, {x: 0, y: 0});
-            fPoint.id(fPointId);
-            attachEventsToFeaturePoint(fPoint,parent);
-        }
-    }
-
 });
