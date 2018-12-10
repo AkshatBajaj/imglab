@@ -165,5 +165,5 @@ var pluginsStore = {
 }
 
 var suggestedCategories = ["bib", "text"];
-var suggestedClarity = ["readable", "occlusion", "blurry", "occlusion + blurry"];
+var suggestedClarity = ["readable", "occlusion", "blurry", "glare", "occlusion + blurry", "occlusion + glare", "blurry + glare", "occlusion + blurry + glare"];
 var suggestedConfidence = ["sure", "unsure"]
