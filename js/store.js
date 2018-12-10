@@ -10,6 +10,11 @@ function updateLabel(oldLabel, newLabel){
     shape.label = newLabel;
 }
 
+function updateRationale(oldRationale, newRationale){
+    var shape = findInArray(labellingData[ imgSelected.name ].shapes, "rationale", oldRationale);
+    shape.rationale = newRationale;
+}
+
 function updateFeaturePointInStore(shapeId, pointid, position, newLabel){
     var shape = getShape(shapeId);
     var scale = 1 / imgSelected.size.imageScale;
@@ -73,6 +78,7 @@ function scaleShape(id, type, bbox, points, scale) {
     return {
         "id" : id,
         "label" : "unlabelled",
+        "rationale" : "none",
         "type" : type,
         "points": scaleShapePoints(points, scale, type),
         "bbox" : scaleBbox(bbox, scale) || {

@@ -98,6 +98,10 @@
             Label Name
             <input type="text" class="form-text w-100" value="{ targetShape.label }" onchange={updateLabel} placeholder="Label the shape, Eg: face, clock ..">
         </div>
+        <div ref="rationale-data" class="mb-2 mt-2">
+            Rationale
+            <textarea class="form-text w-100" value="{ targetShape.rationale }" onchange={updateRationale} placeholder="Why sure/unsure etc...">
+        </div>
     </div>
     <script>
         var tag = this;
@@ -105,6 +109,10 @@
 
         tag.updateLabel = function(e){
             tag.targetShape.label = e.target.value;
+        }
+
+        tag.updateRationale = function(e){
+            tag.targetShape.rationale = e.target.value;
         }
 
         tag.on('mount',function(){
